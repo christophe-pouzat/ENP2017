@@ -1,0 +1,258 @@
+#+TITLE: Fluorescence Imaging Analysis: The Case of Calcium Transients.
+#+DATE: ENP Course: June 20 2017
+#+AUTHOR: @@latex:{\large Christophe Pouzat} \\ \vspace{0.2cm} Mathématiques Appliquées à Paris 5 (MAP5) \\ \vspace{0.2cm} Université Paris-Descartes and CNRS UMR 8145 \\ \vspace{0.2cm} \texttt{christophe.pouzat@parisdescartes.fr}@@
+#+OPTIONS: H:2 tags:nil
+#+EXCLUDE_TAGS: noexport
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation]
+#+BEAMER_HEADER: \setbeamercovered{invisible}
+#+BEAMER_HEADER: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Where are we ?}\tableofcontents[currentsection]\end{frame}}
+#+BEAMER_HEADER: \beamertemplatenavigationsymbolsempty
+#+STARTUP: beamer
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+
+
+* Codes :noexport:
+** Get the figure from van Vliet et al chapter
+We start by downloading the PDF file of the chapter from the author's website:
+
+#+NAME: url-vanVlietEtAl-1998
+#+BEGIN_SRC sh :cache yes
+echo http://homepage.tudelft.nl/e3q6n/publications/1998/WaS98LVFBea/WaS98LVFBea.pdf
+#+END_SRC
+
+#+RESULTS[0e276d911c7ff39ffe1124ba6359f3aa835b52f5]: url-vanVlietEtAl-1998
+: http://homepage.tudelft.nl/e3q6n/publications/1998/WaS98LVFBea/WaS98LVFBea.pdf
+
+#+NAME: download-vanVlietEtAl-1998
+#+BEGIN_SRC sh :cache yes :var url=url-vanVlietEtAl-1998
+wget $url 
+#+END_SRC
+
+#+RESULTS[9c9c2f685ca31d3d3a48fa299f10de4a73865190]: download-vanVlietEtAl-1998
+
+#+NAME: vanVlietEtAl-1998-extract-figure-4
+#+BEGIN_SRC sh :cache yes
+convert WaS98LVFBea.pdf[4] -crop 500x285+50+150\! +repage figs/vanVlietEtAl_1998_Fig4.png
+#+END_SRC
+
+#+RESULTS[68d18d159b75b91e28364a7e4cc1bb822ed44ac5]: vanVlietEtAl-1998-extract-figure-4
+
+
+
+* Introduction :export:
+
+** The variability inherent to fluorescence imaging data (1)
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :width 0.5\textwidth
+[[file:figs/plot_central_CCD_part_gnuplot.png]]
+#+END_CENTER
+
+ADU counts (raw data) from Fura-2 excited at 340 nm. Each square corresponds to a pixel. 25.05 s of data are shown. Same scale on each sub-plot. Data recorded by Andreas Pippow (Kloppenburg Lab. Cologne University).
+
+** The variability inherent to fluorescence imaging data (2) 	   
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :width 0.5\textwidth
+[[file:figs/sgl_pxl_gnuplot.png]]
+#+END_CENTER
+
+One of the central pixels of the previous figure.
+
+** What do we want? (1) 					   
+Given the data set illustrated on the last two slides we might want to estimate parameters like:
++ the peak amplitude
++ the decay time constant(s)
++ the baseline level
++ the whole time course (strictly speaking, a function).
+
+** What do we want? (2) 					   
+If we have a model linking the calcium dynamics---the time course of the free calcium concentration in the cell---to the fluorescence intensity like:
+\[\frac{\mathrm{d}Ca_t}{\mathrm{dt}} \left(1 + \kappa_{F}(Ca_t) + \kappa_{E}(Ca_t) \right) + \frac{j(Ca_t)}{v} = 0 \, , \]
+where $Ca_t$ stands for $[Ca^{2+}]_{free}$ at time t, $v$ is the volume of the neurite---within which diffusion effects can be neglected---and
+\[j(Ca_t) \equiv \gamma (Ca_t - Ca_{steady}) \, ,\]
+is the model of calcium extrusion---$Ca_{steady}$ is the steady state $[Ca^{2+}]_{free}$---
+\[\kappa_{F}(Ca_t) \equiv \frac{F_{total} \, K_{F}}{(K_{F} + Ca_t)^2} \quad \mathrm{and} \quad \kappa_{E}(Ca_t) \equiv \frac{E_{total} \, K_{E}}{(K_{E} + Ca_t)^2} \, ,\]
+where $F$ stands for the fluorophore en $E$ for the /endogenous/ buffer.
+
+** What do we want? (3) 					   
+In the previous slide, assuming that the fluorophore (Fura) parameters: $F_{total}$ and $K_F$ have been calibrated, we might want to estimate:
++ the extrusion parameter: $\gamma$
++ the endogenous buffer parameters: $E_{total}$ and $K_E$
+using an equation relating measured fluorescence to calcium:
+\[Ca_t = K_{F} \, \frac{S_t - S_{min}}{S_{max} - S_t} \, ,\]
+where $S_t$ is the fluorescence (signal) measured at time $t$, $S_{min}$ and $S_{max}$ are /calibrated/ parameters corresponding respectively to the fluorescence in the absence of calcium and with saturating $[Ca^{2+}]$ (for the fluorophore).  
+
+** What do we want? (4) 					   
++ The variability of our signal---meaning that under replication of our measurements /under the exact same conditions/ we wont get the exact same signal---implies that our estimated parameters will also fluctuate upon replication.
++ Formally our parameters are modeled as /random variables/ and *it is not enough to summarize a random variable by a single number*.
++ If we cannot get the full distribution function for our parameters, we want to give at least ranges within which the true value of the parameter should be found with a given probability.
++ In other words: *an analysis without confidence intervals is not an analysis*, it is strictly speaking useless since it can't be reproduced---if I say that my time constant is 25.76 ms the probability that upon replication I get again 25.76 is essentially 0; if I say that the actual time constant has a 0.95 probability to be in the interval [24,26.5], I can make a comparison with replications.
+
+** A proper handling of the "variability" matters (1)
+Let us consider a simple data generation model:
+\[Y_i \sim \mathcal{P}(f_i)\, , \quad i=0,1,\ldots,K \; ,\]
+where $\mathcal{P}(f_i)$ stands for the /Poisson distribution/ with parameter $f_i$ :
+\[\mathrm{Pr}\{Y_i = n\} = \frac{(f_i)^n}{n!} \exp (-f_i)\, , \quad \mathrm{for} \quad n=0,1,2,\ldots \]
+and
+\[f_i = f(\delta i| f_{\infty}, \Delta, \beta) = f_{\infty} + \Delta \, \exp (- \beta \, \delta i)\; ,\]
+\delta is a time step and $f_{\infty}$, \Delta and \beta are model parameters.
+
+** A proper handling of the "variability" matters (2)
+
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :width 0.5\textwidth
+[[file:figs/mono_exp_sim_gnuplot.png]]
+#+END_CENTER
+
+Data simulated according to the previous model. We are going to assume that $f_{\infty}$ and $\Delta$ are known and that $(t_1,y_1)$ and $(t_2,y_2)$ are given. We want to estimate $\beta$.
+
+** Two estimators (1)
+We are going to consider two [[https://en.wikipedia.org/wiki/Estimator][estimators]] for $\beta$:
++ The "classical" least square estimator: \[ \tilde{\beta} = \arg \min \tilde{L}(\beta) \; ,\] where \[ \tilde{L}(\beta) = \sum_j \big( y_j - f(t_j \mid \beta) \big)^2 \; .\]
++ The least square estimator applied to the /square root/ of the data: \[\hat{\beta} = \arg \min \hat{L}(\beta) \; ,\] where \[ \hat{L}(\beta) = \sum_j \big( \sqrt{y_j} - \sqrt{f(t_j \mid \beta)} \big)^2 \; .\]
+
+** Two estimators (2)
+We perform an empirical study as follows:
++ We simulate 100,000 experiments such that: \[ (Y_1,Y_2) \sim \big(\mathcal{P}(f(0.3|\beta_0), \mathcal{P}(f(3|\beta_0)\big) \; ,\] with $\beta_0=1$.
++ For each simulated pair, $(y_1,y_2)^{[k]}$ ($k=1,\ldots,10^5$), we minimize $\tilde{L}(\beta)$ and $\hat{L}(\beta)$ to obtain: $(\tilde{\beta}^{[k]},\hat{\beta}^{[k]})$.
++ We build histograms for $\tilde{\beta}^{[k]}$ and $\hat{\beta}^{[k]}$ as density estimators of our estimators.
+
+** Two estimators (3)
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :width 0.5\textwidth
+[[file:figs/beta_samp_dist_fig.png]]
+#+END_CENTER
+
+Both histograms are built with 100 bins. $\hat{\beta}$ is *clearly* better than $\tilde{\beta}$ since its variance is smaller. The derivation of the theoretical (large sample) densities is given in [[http://intl-jn.physiology.org/cgi/content/short/103/2/1130][Joucla et al (2010)]].
+
+* CCD camera noise :export:
+
+** CCD basics 							    
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :width 0.9\textwidth
+[[file:figs/vanVlietEtAl_1998_Fig4.png]]
+#+END_CENTER
+
+Source: L. van Vliet et col. (1998) [[http://homepage.tudelft.nl/e3q6n/publications/1998/AP98LVDSTY/AP98LVDSTY.html][Digital Fluorescence Imaging Using Cooled CCD Array Cameras]] (figure 3).
+
+** "Noise" sources in CCD (1) 		
++ The "Photon noise" or "shot noise" arises from the fact the measuring a fluorescence intensity, \lambda, implies *counting photons*---unless one changes the laws of Physics there is nothing one can do to eliminate this source of variability (improperly called "noise")---: \[\mathrm{Pr}\{N=n\} = \frac{\lambda^n}{n!} \exp -\lambda\, , \quad n \, = \, 0,1,\ldots\, , \quad \lambda > 0\; .\]
++ The "thermal noise" arises from thermal agitation which "dumps" electrons in potential wells; this "noise" also follows a Poisson distribution but it can be made negligible by /cooling down/ the camera.    
+
+** "Noise" sources in CCD (2) 					    
++ The "read out noise" arises from the conversion of the number of photo-electrons into an equivalent tension; it follows a normal distribution whose variance is independent of the mean (as long as reading is not done at too high a frequency).
++ The "digitization noise" arises from the mapping of a continuous value, the tension, onto a grid; it is negligible as soon as more than 8 bit are used.
+
+** A simple CCD model (1) 					    
++ We can easily obtain a simple CCD model taking into account the two main "noise" sources (photon and read-out). 
++ To get this model we are going the fact (a theorem) that when a *large number of photon are detected*, the Poisson distribution is well approximated by ([[http://en.wikipedia.org/wiki/Convergence_in_distribution#Convergence_in_distribution][converges in distribution]] to) a normal distribution with identical mean and variance: \[\mathrm{Pr}\{N=n\} = \frac{\lambda^n}{n!} \exp -\lambda \approx \mathcal{N}(\lambda,\lambda) \; .\]
++ In other words: \[ N \approx \lambda + \sqrt{\lambda} \, \epsilon \; ,\] where $\epsilon \sim \mathcal{N}(0,1)$ (follows a standard normal distribution).     
+
+** A simple CCD model (2) 					    
++ A read-out noise is added next following a normal distribution with 0 mean and variance $\sigma_{R}^2$.
++ We are therefore adding to the random variable $N$ a new *independent* random variable $R \sim \mathcal{N}(0,\sigma_{R}^2)$ giving: \[M \equiv N+R \approx \lambda + \sqrt{\lambda+\sigma_{R}^2} \, \epsilon \; ,\] where the fact that the sum of two independent normal random variables is a normal random variable whose mean is the sum of the mean and whose variance is the sum of the variances has been used.
+
+** A simple CCD model (3) 					    
++ Since the capacity of the photo-electron weels is finite (35000 for the camera used in the first slides) and since the number of photon-electrons will be digitized on 12 bit (4096 levels), a "gain" $G$ *smaller than one* must be applied if we want to represent faithfully (without saturation) an almost full well.
++ We therefore get: \[Y \equiv G \cdot M \approx G \, \lambda + \sqrt{G^2 \, (\lambda+\sigma_{R}^2)} \, \epsilon \; .\]
+
+** For completeness: Convergence in distribution of a Poisson toward a normal rv (1)
+We use the [[http://en.wikipedia.org/wiki/Moment-generating_function][moment-generating function]] and the following theorem (/e.g./ John Rice, 2007, /Mathematical Statistics and Data Analysis/, Chap. 5, Theorem A):
++ If the moment-generating function of each element of the rv sequence $X_n$ is $m_n(t)$,
++ if the moment-generating function of the rv $X$ is $m(t)$,
++ if $m_n(t) \rightarrow m(t)$ when $n \rightarrow \infty$ for all $|t| \le b$ where $b > 0$
++ then $X_n \xrightarrow{D} X$. 
+
+** For completeness: Convergence in distribution of a Poisson toward a normal rv (2)
+Lets show that:
+\[Y_n = \frac{X_n - n}{\sqrt{n}} \; , \]
+where $X_n$ follows a Poisson distribution with parameter $n$, converges in distribution towards $Z$ standard normal rv.
+
+We have:
+\[m_n(t) \equiv \mathrm{E}\left[\exp(Y_n t)\right] \; ,\]
+therefore:
+\[m_n(t) = \sum_{k=0}^{\infty} \exp\left(\frac{k-n}{\sqrt{n}}t\right) \frac{n^k}{k!} \exp(-n) \; ,\]
+
+** For completeness: Convergence in distribution of a Poisson toward a normal rv (3)
+\[m_n(t) = \exp(-n) \exp(-\sqrt{n}t) \sum_{k=0}^{\infty} \frac{\left(n \exp\left(t/\sqrt{n}\right)\right)^k}{k!}\]
+\[m_n(t) = \exp\left(-n - \sqrt{n} t+ n \exp(t/\sqrt{n})\right)\]
+\[m_n(t) = \exp\left(-n - \sqrt{n} t+ n \sum_{k=0}^{\infty}  \left(\frac{t}{\sqrt{n}}\right)^k \frac{1}{k!}\right)\]
+\[m_n(t) = \exp\left(-n - \sqrt{n} t+ n + \sqrt{n} t + \frac{t^2}{2} + n \sum_{k=3}^{\infty}  \left(\frac{t}{\sqrt{n}}\right)^k \frac{1}{k!}\right)\]
+\[m_n(t) = \exp\left( \frac{t^2}{2} + n \sum_{k=3}^{\infty} \left(\frac{t}{\sqrt{n}}\right)^k \frac{1}{k!}\right)\]
+
+** For completeness: Convergence in distribution of a Poisson toward a normal rv (4)
+We must show:
+\[n \sum_{k=3}^{\infty}\left(\frac{t}{\sqrt{n}}\right)^k \frac{1}{k!} \rightarrow_{n \rightarrow \infty} 0 \quad \forall\ |t| \le b, \quad \text{where}
+      \quad b > 0\, ,\]
+since $\exp(-t^2/2)$ is the moment-generating function of a standard normal rv.
+But
+\[\left| n \sum_{k=3}^{\infty} \left(\frac{t}{\sqrt{n}}\right)^k \frac{1}{k!} \right| \rightarrow_{n \rightarrow \infty} 0 \quad \forall\ |t| \le b, \quad \text{where} \quad b > 0\,\]
+implies that since
+\[- \left|n \sum_{k=3}^{\infty}
+      \left(\frac{t}{\sqrt{n}}\right)^k \frac{1}{k!} \right| \le n
+    \sum_{k=3}^{\infty} 
+      \left(\frac{t}{\sqrt{n}}\right)^k \frac{1}{k!} \le \left| n
+        \sum_{k=3}^{\infty} 
+      \left(\frac{t}{\sqrt{n}}\right)^k \frac{1}{k!} \right| \, .\]
+
+** For completeness: Convergence in distribution of a Poisson toward a normal rv (5)
+But for all $|t| \le b$ where $b > 0$
+\begin{displaymath}
+  \begin{array}{lcl}
+    0 \le \left| n \sum_{k=3}^{\infty}
+      \left(\frac{t}{\sqrt{n}}\right)^k \frac{1}{k!} \right| & \le & n
+    \sum_{k=3}^{\infty} 
+      \left(\frac{|t|}{\sqrt{n}}\right)^k \frac{1}{k!} \\
+      & \le & \frac{|t|^3}{\sqrt{n}} \sum_{k=0}^{\infty} 
+      \left(\frac{|t|}{\sqrt{n}}\right)^k \frac{1}{(k+3)!} \\
+      & \le & \frac{|t|^3}{\sqrt{n}} \sum_{k=0}^{\infty} 
+      \left(\frac{|t|}{\sqrt{n}}\right)^k \frac{1}{k!} \\
+      & \le & \frac{|t|^3}{\sqrt{n}}
+      \exp\left(\frac{|t|}{\sqrt{n}}\right) \rightarrow_{n \rightarrow
+      \infty} 0 \, ,
+  \end{array}
+\end{displaymath}
+which completes the proof.
+
+** For completeness: Convergence in distribution of a Poisson toward a normal rv (6)
+
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :width 0.5\textwidth
+[[file:figs/scaled_poisson_cdf_n_5.png]]
+#+END_CENTER
+
+Cumulative distribution functions (CDF) of $Y_5$ (black) and $Z$ a standard normal (red).
+
+** For completeness: Convergence in distribution of a Poisson toward a normal rv (7)
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :width 0.5\textwidth
+[[file:figs/scaled_poisson_cdf_n_50.png]]
+#+END_CENTER
+
+Cumulative distribution functions (CDF) of $Y_{50}$ (black) and $Z$ a standard normal (red).
+
+** For completeness: Convergence in distribution of a Poisson toward a normal rv (8)
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :width 0.5\textwidth
+[[file:figs/scaled_poisson_cdf_n_500.png]]
+#+END_CENTER
+
+Cumulative distribution functions (CDF) of $Y_{500}$ (black) and $Z$ a standard normal (red).
+
+** For completeness: Convergence in distribution of a Poisson toward a normal rv (9)
+
+#+BEGIN_CENTER
+#+ATTR_LaTeX: :width 0.5\textwidth
+[[file:figs/scaled_poisson_cdf_n_5000.png]]
+#+END_CENTER
+
+Cumulative distribution functions (CDF) of $Y_{5000}$ (black) and $Z$ a standard normal (red).

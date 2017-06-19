@@ -485,18 +485,6 @@ set terminal svg size 600,600 fname 'Verdana, Helvetica, Arial, sans-serif' \
 #+RESULTS: plot_central_CCD_part_gnuplot_svg
 [[file:figs/plot_central_CCD_part_gnuplot.svg]]
 
-#+BEGIN_COMMENT
-#+BEGIN_CENTER
-#+NAME: plot_central_CCD_part_gnuplot_png
-#+BEGIN_SRC python :results output html :exports results :eval yes
-from base64 import b64encode, b64decode
-with open('figs/fig1_gnuplot.png', 'rb') as image:
-    data = image.read()
-    str = b'<img src="data:image/png;base64,'+b64encode(data)+b'">'
-    print(str.decode('utf8'))
-#+END_SRC
-#+END_CENTER
-#+END_COMMENT
 
 We get the second figure that shows the ADU time series of pixel (27,39) by first dumping the data to a file:
 
@@ -560,18 +548,6 @@ set terminal svg size 600,600 fname 'Verdana, Helvetica, Arial, sans-serif' \
 #+RESULTS: sgl_pxl_gnuplot_svg
 [[file:figs/sgl_pxl_gnuplot.svg]]
 
-#+BEGIN_COMMENT
-#+BEGIN_CENTER
-#+NAME: sgl_pxl_gnuplot_png
-#+BEGIN_SRC python :results output html :exports results :eval yes
-from base64 import b64encode, b64decode
-with open('figs/sgl_pxl_gnuplot.png', 'rb') as image:
-    data = image.read()
-    str = b'<img src="data:image/png;base64,'+b64encode(data)+b'">'
-    print(str.decode('utf8'))
-#+END_SRC
-#+END_CENTER
-#+END_COMMENT
 
 ** =C= code doing variance stabilization :noexport:
    :PROPERTIES:
@@ -1058,18 +1034,7 @@ set terminal svg size 600,600 fname 'Verdana, Helvetica, Arial, sans-serif' \
 #+RESULTS: mono_exp_sim_gnuplot_svg
 [[file:figs/mono_exp_sim_gnuplot.svg]]
 
-#+BEGIN_COMMENT
-#+BEGIN_CENTER
-#+NAME: mono_exp_sim_gnuplot_png
-#+BEGIN_SRC python :results output html :exports results :eval yes
-from base64 import b64encode, b64decode
-with open('figs/mono_exp_sim_gnuplot.png', 'rb') as image:
-    data = image.read()
-    str = b'<img src="data:image/png;base64,'+b64encode(data)+b'">'
-    print(str.decode('utf8'))
-#+END_SRC
-#+END_CENTER
-#+END_COMMENT
+
 ** Simple case simulation
 We explore here in a simple setting (only one model parameter to estimate) the consequences at the [[https://en.wikipedia.org/wiki/Statistical_inference][inference]] level of a wrong noise model. So we start from the "simple" mono-exponential decay of the previous section, assume /that only the inverse time constant/, =beta=, is unknown and that only two observations, like the two points of the [[mono_exp_sim_gnuplot][previous figure]], are available. We then consider two [[https://en.wikipedia.org/wiki/Estimator][estimators]], first the classical residual sum of square (=RSS=) minimizer:
 \begin{equation}\label{eq:classical-RSS}
