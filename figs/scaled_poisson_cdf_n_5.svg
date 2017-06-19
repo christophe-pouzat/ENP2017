@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"  standalone="no"?>
+<svg 
+ width="600" height="600"
+ viewBox="0 0 600 600"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+
+<title>Gnuplot</title>
+<desc>Produced by GNUPLOT 5.0 patchlevel 6 </desc>
+
+<g id="gnuplot_canvas">
+
+<rect x="0" y="0" width="600" height="600" fill="none"/>
+<defs>
+
+	<circle id='gpDot' r='0.5' stroke-width='0.5'/>
+	<path id='gpPt0' stroke-width='0.179' stroke='currentColor' d='M-1,0 h2 M0,-1 v2'/>
+	<path id='gpPt1' stroke-width='0.179' stroke='currentColor' d='M-1,-1 L1,1 M1,-1 L-1,1'/>
+	<path id='gpPt2' stroke-width='0.179' stroke='currentColor' d='M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1'/>
+	<rect id='gpPt3' stroke-width='0.179' stroke='currentColor' x='-1' y='-1' width='2' height='2'/>
+	<rect id='gpPt4' stroke-width='0.179' stroke='currentColor' fill='currentColor' x='-1' y='-1' width='2' height='2'/>
+	<circle id='gpPt5' stroke-width='0.179' stroke='currentColor' cx='0' cy='0' r='1'/>
+	<use xlink:href='#gpPt5' id='gpPt6' fill='currentColor' stroke='none'/>
+	<path id='gpPt7' stroke-width='0.179' stroke='currentColor' d='M0,-1.33 L-1.33,0.67 L1.33,0.67 z'/>
+	<use xlink:href='#gpPt7' id='gpPt8' fill='currentColor' stroke='none'/>
+	<use xlink:href='#gpPt7' id='gpPt9' stroke='currentColor' transform='rotate(180)'/>
+	<use xlink:href='#gpPt9' id='gpPt10' fill='currentColor' stroke='none'/>
+	<use xlink:href='#gpPt3' id='gpPt11' stroke='currentColor' transform='rotate(45)'/>
+	<use xlink:href='#gpPt11' id='gpPt12' fill='currentColor' stroke='none'/>
+	<path id='gpPt13' stroke-width='0.179' stroke='currentColor' d='M0,1.330 L1.265,0.411 L0.782,-1.067 L-0.782,-1.076 L-1.265,0.411 z'/>
+	<use xlink:href='#gpPt13' id='gpPt14' fill='currentColor' stroke='none'/>
+	<filter id='textbox' filterUnits='objectBoundingBox' x='0' y='0' height='1' width='1'>
+	  <feFlood flood-color='white' flood-opacity='1' result='bgnd'/>
+	  <feComposite in='SourceGraphic' in2='bgnd' operator='atop'/>
+	</filter>
+	<filter id='greybox' filterUnits='objectBoundingBox' x='0' y='0' height='1' width='1'>
+	  <feFlood flood-color='lightgrey' flood-opacity='1' result='grey'/>
+	  <feComposite in='SourceGraphic' in2='grey' operator='atop'/>
+	</filter>
+</defs>
+<g fill="none" color="white" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M90.7,528.0 L101.9,528.0 M568.4,528.0 L557.2,528.0  '/>	<g transform="translate(80.2,532.9)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="end">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" > 0</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M90.7,426.6 L101.9,426.6 M568.4,426.6 L557.2,426.6  '/>	<g transform="translate(80.2,431.5)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="end">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" > 0.2</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M90.7,325.2 L101.9,325.2 M568.4,325.2 L557.2,325.2  '/>	<g transform="translate(80.2,330.1)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="end">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" > 0.4</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M90.7,223.9 L101.9,223.9 M568.4,223.9 L557.2,223.9  '/>	<g transform="translate(80.2,228.8)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="end">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" > 0.6</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M90.7,122.5 L101.9,122.5 M568.4,122.5 L557.2,122.5  '/>	<g transform="translate(80.2,127.4)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="end">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" > 0.8</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M90.7,21.1 L101.9,21.1 M568.4,21.1 L557.2,21.1  '/>	<g transform="translate(80.2,26.0)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="end">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" > 1</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M90.7,528.0 L90.7,516.8 M90.7,21.1 L90.7,32.3  '/>	<g transform="translate(90.7,555.4)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" >-3</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M170.3,528.0 L170.3,516.8 M170.3,21.1 L170.3,32.3  '/>	<g transform="translate(170.3,555.4)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" >-2</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M249.9,528.0 L249.9,516.8 M249.9,21.1 L249.9,32.3  '/>	<g transform="translate(249.9,555.4)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" >-1</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M329.6,528.0 L329.6,516.8 M329.6,21.1 L329.6,32.3  '/>	<g transform="translate(329.6,555.4)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" > 0</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M409.2,528.0 L409.2,516.8 M409.2,21.1 L409.2,32.3  '/>	<g transform="translate(409.2,555.4)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" > 1</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M488.8,528.0 L488.8,516.8 M488.8,21.1 L488.8,32.3  '/>	<g transform="translate(488.8,555.4)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" > 2</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M568.4,528.0 L568.4,516.8 M568.4,21.1 L568.4,32.3  '/>	<g transform="translate(568.4,555.4)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" > 3</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M90.7,21.1 L90.7,528.0 L568.4,528.0 L568.4,21.1 L90.7,21.1 Z  '/></g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<g transform="translate(21.2,274.6) rotate(270)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" >CDF</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<g transform="translate(329.5,589.1)" stroke="none" fill="black" font-family="Verdana, Helvetica, Arial, sans-serif" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Verdana, Helvetica, Arial, sans-serif" >Z</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+	<g id="gnuplot_plot_1" ><title>norm(x)</title>
+<g fill="none" color="white" stroke="currentColor" stroke-width="2.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(255,   0,   0)'  d='M90.7,527.3 L95.5,527.2 L100.4,527.0 L105.2,526.8 L110.0,526.5 L114.8,526.2 L119.7,525.9 L124.5,525.5
+		L129.3,525.0 L134.1,524.4 L139.0,523.8 L143.8,523.0 L148.6,522.2 L153.4,521.2 L158.3,520.0 L163.1,518.7
+		L167.9,517.3 L172.7,515.6 L177.6,513.7 L182.4,511.6 L187.2,509.3 L192.0,506.7 L196.9,503.8 L201.7,500.6
+		L206.5,497.0 L211.3,493.1 L216.2,488.9 L221.0,484.2 L225.8,479.2 L230.6,473.7 L235.5,467.9 L240.3,461.5
+		L245.1,454.8 L249.9,447.6 L254.8,439.9 L259.6,431.8 L264.4,423.3 L269.2,414.3 L274.1,404.9 L278.9,395.1
+		L283.7,384.9 L288.5,374.3 L293.4,363.4 L298.2,352.2 L303.0,340.7 L307.8,329.0 L312.7,317.1 L317.5,305.1
+		L322.3,292.9 L327.1,280.7 L332.0,268.4 L336.8,256.2 L341.6,244.0 L346.4,232.0 L351.3,220.1 L356.1,208.4
+		L360.9,196.9 L365.7,185.7 L370.6,174.8 L375.4,164.2 L380.2,154.0 L385.0,144.2 L389.9,134.8 L394.7,125.8
+		L399.5,117.3 L404.3,109.2 L409.2,101.5 L414.0,94.3 L418.8,87.6 L423.6,81.2 L428.5,75.4 L433.3,69.9
+		L438.1,64.9 L442.9,60.2 L447.8,56.0 L452.6,52.1 L457.4,48.5 L462.2,45.3 L467.1,42.4 L471.9,39.8
+		L476.7,37.5 L481.5,35.4 L486.4,33.5 L491.2,31.8 L496.0,30.4 L500.8,29.1 L505.7,27.9 L510.5,26.9
+		L515.3,26.1 L520.1,25.3 L525.0,24.7 L529.8,24.1 L534.6,23.6 L539.4,23.2 L544.3,22.9 L549.1,22.6
+		L553.9,22.3 L558.7,22.1 L563.6,21.9 L568.4,21.8  '/></g>
+	</g>
+	<g id="gnuplot_plot_2" ><title>"scaled_poisson_cdf.txt" index idx using 1:2</title>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(  0,   0,   0)'  d='M151.5,524.6 L187.1,524.6 L187.1,507.5 L222.7,507.5 L222.7,464.8 L258.3,464.8 L258.3,393.7 L293.9,393.7
+		L293.9,304.7 L329.6,304.7 L329.6,215.8 L365.2,215.8 L365.2,141.6 L400.8,141.6 L400.8,88.7 L436.4,88.7
+		L436.4,55.6 L472.0,55.6 L472.0,37.2 L507.6,37.2 L507.6,28.0 L543.2,28.0 L543.2,23.9 L568.4,23.9
+		 '/></g>
+	</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="black" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='black'  d='M90.7,21.1 L90.7,528.0 L568.4,528.0 L568.4,21.1 L90.7,21.1 Z  '/></g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+</g>
+</svg>
+
