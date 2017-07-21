@@ -309,7 +309,7 @@ int main(int argc, char *argv[])
   	 exp(est+1.96*err));
   }
   // Print intensity estimations one column per pixel
-  printf("\n\n# Predicted variance stabilized signals");
+  printf("\n\n# Predicted variance stabilized signals\n");
   double auto_fluo = exp(FIT(0));
   printf("#");
   for (size_t pxl_idx=0; pxl_idx<nb_pxl; pxl_idx++)
@@ -320,13 +320,13 @@ int main(int argc, char *argv[])
       printf("%g ", 2*sqrt(exp(FIT(pxl_idx+1))+auto_fluo+variance));
     printf("\n");
   }
-  for (size_t k=baseline; k<nsamp-baseline; k++) {
+  for (size_t k=baseline; k<nsamp; k++) {
     for (size_t pxl_idx=0; pxl_idx<nb_pxl; pxl_idx++)
       printf("%g ", 2*sqrt(exp(FIT(pxl_idx+1))*exp(FIT(1+nb_pxl+k-baseline))+auto_fluo+variance));
     printf("\n");
   }
   // Print observations one column per pixel
-  printf("\n\n# Observed stabilized signals");
+  printf("\n\n# Observed stabilized signals\n");
   printf("#");
   for (size_t pxl_idx=0; pxl_idx<nb_pxl; pxl_idx++)
     printf(" (%d,%d)",(int) pxl_row[pxl_idx],(int) pxl_col[pxl_idx]);

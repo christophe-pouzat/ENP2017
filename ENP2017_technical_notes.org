@@ -4932,21 +4932,22 @@ valgrind ./code/roi -f Data_POMC.hdf5 -d stack -g 0.14 \
 
 #+RESULTS: roi-valgrind
 #+begin_example
-==5196== Memcheck, a memory error detector
-==5196== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==5196== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info
-==5196== Command: ./code/roi -f Data_POMC.hdf5 -d stack -g 0.14 -v 290 -m
-==5196== 
-==5196== 
-==5196== HEAP SUMMARY:
-==5196==     in use at exit: 0 bytes in 0 blocks
-==5196==   total heap usage: 6,573 allocs, 6,573 frees, 20,302,008 bytes allocated
-==5196== 
-==5196== All heap blocks were freed -- no leaks are possible
-==5196== 
-==5196== For counts of detected and suppressed errors, rerun with: -v
-==5196== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==7239== Memcheck, a memory error detector
+==7239== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==7239== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==7239== Command: ./code/roi -f Data_POMC.hdf5 -d stack -g 0.14 -v 290 -m
+==7239== 
+==7239== 
+==7239== HEAP SUMMARY:
+==7239==     in use at exit: 0 bytes in 0 blocks
+==7239==   total heap usage: 6,579 allocs, 6,579 frees, 20,302,218 bytes allocated
+==7239== 
+==7239== All heap blocks were freed -- no leaks are possible
+==7239== 
+==7239== For counts of detected and suppressed errors, rerun with: -v
+==7239== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 #+end_example
+
 
 If instead of the matrix we want the indexes of the pixels making the ROI we use:
 
@@ -4972,6 +4973,7 @@ cat roi_pxl
 28 38
 28 39
 #+end_example
+
 
 ** Making the figure
 
@@ -5540,7 +5542,7 @@ for (size_t k=baseline; k<nsamp; k++) {
 	 exp(est+1.96*err));
 }
 // Print intensity estimations one column per pixel
-printf("\n\n# Predicted variance stabilized signals");
+printf("\n\n# Predicted variance stabilized signals\n");
 double auto_fluo = exp(FIT(0));
 printf("#");
 for (size_t pxl_idx=0; pxl_idx<nb_pxl; pxl_idx++)
@@ -5551,13 +5553,13 @@ for (size_t k=0; k<baseline; k++) {
     printf("%g ", 2*sqrt(exp(FIT(pxl_idx+1))+auto_fluo+variance));
   printf("\n");
 }
-for (size_t k=baseline; k<nsamp-baseline; k++) {
+for (size_t k=baseline; k<nsamp; k++) {
   for (size_t pxl_idx=0; pxl_idx<nb_pxl; pxl_idx++)
     printf("%g ", 2*sqrt(exp(FIT(pxl_idx+1))*exp(FIT(1+nb_pxl+k-baseline))+auto_fluo+variance));
   printf("\n");
 }
 // Print observations one column per pixel
-printf("\n\n# Observed stabilized signals");
+printf("\n\n# Observed stabilized signals\n");
 printf("#");
 for (size_t pxl_idx=0; pxl_idx<nb_pxl; pxl_idx++)
   printf(" (%d,%d)",(int) pxl_row[pxl_idx],(int) pxl_col[pxl_idx]);
@@ -5708,6 +5710,7 @@ status = success
 
 #+end_example
 
+
 We see that our RSS (or $\chi^2$) per degree of freedom is good! We can check our code with valgrind in the usual way:
 
 #+NAME: fit_pwc_to_roi-valgrind
@@ -5717,11 +5720,11 @@ valgrind ./code/fit_pwc_to_roi -f Data_POMC.hdf5 -d stack -g 0.14 -v 290 -p roi_
 
 #+RESULTS: fit_pwc_to_roi-valgrind
 #+begin_example
-==7160== Memcheck, a memory error detector
-==7160== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
-==7160== Using Valgrind-3.12.0 and LibVEX; rerun with -h for copyright info
-==7160== Command: ./code/fit_pwc_to_roi -f Data_POMC.hdf5 -d stack -g 0.14 -v 290 -p roi_pxl
-==7160== 
+==7270== Memcheck, a memory error detector
+==7270== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==7270== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==7270== Command: ./code/fit_pwc_to_roi -f Data_POMC.hdf5 -d stack -g 0.14 -v 290 -p roi_pxl
+==7270== 
 Fitting now piecewise constant signal within ROI for
 dataset /stack from file Data_POMC.hdf5
 The row and column indexes of the pixels making the
@@ -5836,19 +5839,20 @@ Jacobian evaluations: 0
 reason for stopping: small step size
 initial RSS = 17256272.330096
 final   RSS = 1952.462926
-chisq/dof = 1.06112
+RSS/dof = 1.06112
 status = success
 
-==7160== 
-==7160== HEAP SUMMARY:
-==7160==     in use at exit: 0 bytes in 0 blocks
-==7160==   total heap usage: 6,678 allocs, 6,678 frees, 29,471,496 bytes allocated
-==7160== 
-==7160== All heap blocks were freed -- no leaks are possible
-==7160== 
-==7160== For counts of detected and suppressed errors, rerun with: -v
-==7160== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==7270== 
+==7270== HEAP SUMMARY:
+==7270==     in use at exit: 0 bytes in 0 blocks
+==7270==   total heap usage: 6,684 allocs, 6,684 frees, 29,471,706 bytes allocated
+==7270== 
+==7270== All heap blocks were freed -- no leaks are possible
+==7270== 
+==7270== For counts of detected and suppressed errors, rerun with: -v
+==7270== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 #+end_example
+
 
 We are happy to see that all our allocated memory was freed before returning.
 
